@@ -10,7 +10,20 @@
         <div class="container mt-5 text-center">
         <h1>Welcome to my Laravel application</h1>
     <h2>Contact Form</h2>
-    @include('contact')
+    @if(session('success'))
+        <div>{{ session('success') }}</div>
+    @endif
+    <form method="POST" action="{{ route('contact.submit') }}">
+      
+        @csrf
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <br>
+        <div class="mt-3">
+        <button class="btn btn-primary"type="submit">Submit</button>
+        </div>
+    </form>
+  
         </div>
     </body>
 </html>

@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Contact;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +19,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/success', function(){
-    return view('success');
-});
-Route::post('/', function(){
-    $contact = new Contact();
-    $contact->name = request('name');
-    $contact->email = request('email');
-    $contact->save();
+// Route::get('/success', function(){
+//     return view('success');
+// });
+// Route::post('/', function(){
+//     $contact = new Contact();
+//     $contact->name = request('name');
+//     $contact->email = request('email');
+//     $contact->save();
 
-     return redirect('success');
-});
+//      return redirect('success');
+// });
+Route::post('/', [ContactController::class, 'submits'])->name('contact.submit');
